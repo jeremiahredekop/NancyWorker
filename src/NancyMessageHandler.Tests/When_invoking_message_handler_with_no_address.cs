@@ -20,15 +20,15 @@ namespace NancyMessageHandler.Tests
 
         private IMessageHandler _handler;
         private PrototypeModule _module;
-        private IMessageHandlerFactory _context;
+        private IMessageHandlerFactory _factory;
         private Support.SimpleMessage _message;
 
         protected override void Given()
         {
             _message = new Support.SimpleMessage(new PrototypeMessage());
             _module = new PrototypeModule();
-            _context = MessageHandlerFactory.UsingModule(_module);
-            _handler = _context.GetHandlersForMessage(_message).Single();
+            _factory = MessageHandlerFactory.UsingModule(_module);
+            _handler = _factory.GetHandlersForMessage(_message).Single();
         }
 
         protected override void When()
@@ -39,7 +39,7 @@ namespace NancyMessageHandler.Tests
         [Then]
         public void the_factory_should_return_a_handler_is_available()
         {
-            _context.MessageHandlersExist(_message).Should().BeTrue();
+            _factory.MessageHandlersExist(_message).Should().BeTrue();
         }
 
         [Then]
