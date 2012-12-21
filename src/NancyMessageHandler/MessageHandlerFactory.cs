@@ -5,12 +5,12 @@ namespace NancyMessageHandler
 {
     public class MessageHandlerFactory : IMessageHandlerFactory
     {      
-        public static IMessageHandlerFactory UsingModule(HandlerModule module)
+        public static IMessageHandlerFactory UsingModule(MessageModule module)
         {
             return new MessageHandlerFactory(module);
         }
 
-        private MessageHandlerFactory(HandlerModule module)
+        private MessageHandlerFactory(MessageModule module)
         {
             _typeMessageHandlers = new Dictionary<string, List<IMessageHandler>>();
             module.PrepHandlers(this);

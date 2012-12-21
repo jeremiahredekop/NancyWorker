@@ -8,7 +8,7 @@ namespace NancyMessageHandler.Tests
     [TestFixture]
     public class When_invoking_message_handler_with_no_address : SpecificationBase
     {
-        public class PrototypeHandler : HandlerModule
+        public class PrototypeModule : MessageModule
         {
             public int Counter;
 
@@ -19,14 +19,14 @@ namespace NancyMessageHandler.Tests
         }
 
         private IMessageHandler _handler;
-        private PrototypeHandler _module;
+        private PrototypeModule _module;
         private IMessageHandlerFactory _context;
         private Support.SimpleMessage _message;
 
         protected override void Given()
         {
             _message = new Support.SimpleMessage(new PrototypeMessage());
-            _module = new PrototypeHandler();
+            _module = new PrototypeModule();
             _context = MessageHandlerFactory.UsingModule(_module);
             _handler = _context.GetHandlersForMessage(_message).Single();
         }
@@ -38,9 +38,15 @@ namespace NancyMessageHandler.Tests
         }
 
         [Then]
+        public void the_factory_should_return_a_handler_is_available()
+        {
+            _context.MessageHandlersExist(_message).Should().BeTrue();
+        }
+
+        [Then]
         public void handler_should_support_message()
         {
-            _handler.HandlerType.Should().Be<PrototypeHandler>();
+            _handler.HandlerType.Should().Be<PrototypeModule>();
         }
 
         [Then]

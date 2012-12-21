@@ -7,9 +7,9 @@ namespace NancyMessageHandler
 {
     public class MessageRegistrationHost
     {
-        private readonly IEnumerable<HandlerModule> _handlers;
+        private readonly IEnumerable<MessageModule> _handlers;
 
-        private MessageRegistrationHost(IEnumerable<HandlerModule> handlers )
+        private MessageRegistrationHost(IEnumerable<MessageModule> handlers )
         {
             _handlers = handlers;
             PathHandlers = new Dictionary<string, Type>();
@@ -27,7 +27,7 @@ namespace NancyMessageHandler
             handlers.Add(moduleType);
         }
 
-        public static MessageRegistrationHost Init(IEnumerable<HandlerModule> handlers)
+        public static MessageRegistrationHost Init(IEnumerable<MessageModule> handlers)
         {
             return new MessageRegistrationHost(handlers);
         }

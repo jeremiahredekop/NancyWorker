@@ -7,5 +7,4 @@ namespace NancyMessageHandler
         IEnumerable<IMessageHandler> GetHandlersForMessage(IMessage message);
         bool MessageHandlersExist(IMessage message);
     }
-
 }

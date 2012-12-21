@@ -2,16 +2,16 @@
 
 namespace NancyMessageHandler
 {
-    public abstract class HandlerModule
+    public abstract class MessageModule
     {
         private readonly string _rootuUl;
         private MessageRegistrationHost _host;
 
-        protected HandlerModule()
+        protected MessageModule()
         {   
         }
 
-        protected HandlerModule(string rootuUl)
+        protected MessageModule(string rootuUl)
         {
             _rootuUl = rootuUl;
         }

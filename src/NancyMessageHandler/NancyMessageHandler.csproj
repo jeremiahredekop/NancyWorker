@@ -47,8 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressBasedMessageHandler.cs" />
-    <Compile Include="Domain\IAggregateRepository.cs" />
-    <Compile Include="HandlerModule.cs" />
+    <Compile Include="MessageModule.cs" />
     <Compile Include="IMessage.cs" />
     <Compile Include="IMessageHandler.cs" />
     <Compile Include="IMessageHandlerExtension.cs" />

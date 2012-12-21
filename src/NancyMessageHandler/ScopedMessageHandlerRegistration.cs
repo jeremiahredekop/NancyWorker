@@ -5,10 +5,10 @@ namespace NancyMessageHandler
     public class ScopedMessageHandlerRegistration<T>
     {
         private readonly MessageRegistrationHost _host;
-        private readonly HandlerModule _module;
+        private readonly MessageModule _module;
         private readonly string _path;
 
-        public ScopedMessageHandlerRegistration(MessageRegistrationHost host, HandlerModule module, string path)
+        public ScopedMessageHandlerRegistration(MessageRegistrationHost host, MessageModule module, string path)
         {
             _host = host;
             _module = module;

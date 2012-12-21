@@ -3,9 +3,9 @@
     public class AddressBasedMessageHandler
     {
         private readonly MessageRegistrationHost _host;
-        private readonly HandlerModule _module;
+        private readonly MessageModule _module;
 
-        public AddressBasedMessageHandler(MessageRegistrationHost host, HandlerModule module)
+        public AddressBasedMessageHandler(MessageRegistrationHost host, MessageModule module)
         {
             _host = host;
             _module = module;

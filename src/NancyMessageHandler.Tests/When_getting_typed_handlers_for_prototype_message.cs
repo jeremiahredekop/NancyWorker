@@ -10,7 +10,7 @@ namespace NancyMessageHandler.Tests
     [TestFixture]
     public class When_getting_handlers_with_no_address_for_prototype_message : SpecificationBase
     {
-        public class PrototypeHandler : HandlerModule
+        public class PrototypeModule : MessageModule
         {
             protected override void RegisterHandlers()
             {
@@ -22,7 +22,7 @@ namespace NancyMessageHandler.Tests
 
         protected override void Given()
         {
-            var registrations = new List<HandlerModule> {new PrototypeHandler()};
+            var registrations = new List<MessageModule> {new PrototypeModule()};
 
             var host = MessageRegistrationHost.Init(registrations);
 
@@ -40,7 +40,7 @@ namespace NancyMessageHandler.Tests
         [Then]
         public void the_handler_type_should_be_expected()
         {
-            _handler.Should().Be<PrototypeHandler>();
+            _handler.Should().Be<PrototypeModule>();
         }
     }
 }

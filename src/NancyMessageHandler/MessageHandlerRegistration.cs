@@ -7,9 +7,9 @@ namespace NancyMessageHandler
     internal class MessageHandlerRegistration<T> : IMessageHandlerExtension<T> where T: class
     {
         private readonly MessageRegistrationHost _host;
-        private readonly HandlerModule _module;
+        private readonly MessageModule _module;
 
-        public MessageHandlerRegistration(MessageRegistrationHost host, HandlerModule module)
+        public MessageHandlerRegistration(MessageRegistrationHost host, MessageModule module)
         {
             _host = host;
             _module = module;

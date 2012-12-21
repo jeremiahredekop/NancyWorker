@@ -4,10 +4,10 @@ namespace NancyMessageHandler
 {
     internal class MessageHandlerExecution<T> : IMessageHandlerExtension<T> where T : class
     {
-        private readonly HandlerModule _module;
+        private readonly MessageModule _module;
         private readonly MessageHandlerFactory _context;
 
-        public MessageHandlerExecution(MessageHandlerFactory context, HandlerModule module)
+        public MessageHandlerExecution(MessageHandlerFactory context, MessageModule module)
         {
             _module = module;
             _context = context;
