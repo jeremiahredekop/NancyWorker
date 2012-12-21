@@ -54,7 +54,7 @@ namespace NancyMessageHandler
 
         private MessageHandlerFactory _messageHandlerFactory;
 
-        public void PrepHandlers(MessageHandlerFactory messageHandlerFactory)
+        internal void PrepHandlers(MessageHandlerFactory messageHandlerFactory)
         {
             _handlerExecutionMode = HandlerExecutionMode.Execution;
             _messageHandlerFactory = messageHandlerFactory;
