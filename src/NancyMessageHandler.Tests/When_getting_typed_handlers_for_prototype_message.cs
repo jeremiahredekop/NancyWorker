@@ -24,10 +24,10 @@ namespace NancyMessageHandler.Tests
         {
             var registrations = new List<MessageModule> {new PrototypeModule()};
 
-            var host = MessageRegistrationHost.Init(registrations);
+            MessageRegistrationHost host = MessageRegistrationHost.Init(registrations);
 
             var message = new Support.SimpleMessage(new PrototypeMessage());
-            var handlerTypes = host.GetGenericHandlersTypesForMessage(message);
+            IEnumerable<Type> handlerTypes = host.GetGenericHandlersTypesForMessage(message);
             _handler = handlerTypes.SingleOrDefault();
         }
 
