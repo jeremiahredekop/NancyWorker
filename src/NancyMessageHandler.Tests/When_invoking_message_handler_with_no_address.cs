@@ -27,19 +27,13 @@ namespace NancyMessageHandler.Tests
         {
             _message = new Support.SimpleMessage(new PrototypeMessage());
             _module = new PrototypeModule();
-            _factory = MessageHandlerFactory.UsingModule(_module);
-            _handler = _factory.GetHandlersForMessage(_message).Single();
+            _factory = MessageHandlerFactory.ForMessage(_message);
+            _handler = _factory.GetHandlers(_module).Single();
         }
 
         protected override void When()
         {
             _handler.Handle(_message);
-        }
-
-        [Then]
-        public void the_factory_should_return_a_handler_is_available()
-        {
-            _factory.MessageHandlersExist(_message).Should().BeTrue();
         }
 
         [Then]

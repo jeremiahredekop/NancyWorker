@@ -4,16 +4,17 @@ using gcExtensions;
 namespace NancyMessageHandler
 {
     public class MessageHandlerFactory : IMessageHandlerFactory
-    {      
-        public static IMessageHandlerFactory UsingModule(MessageModule module)
+    {
+        private readonly IMessage _message;
+
+        public static IMessageHandlerFactory ForMessage(IMessage message)
         {
-            return new MessageHandlerFactory(module);
+            return new MessageHandlerFactory(message);
         }
 
-        private MessageHandlerFactory(MessageModule module)
+        private MessageHandlerFactory(IMessage message)
         {
-            _typeMessageHandlers = new Dictionary<string, List<IMessageHandler>>();
-            module.PrepHandlers(this);
+            _message = message;
         }
 
         internal void RegisterHandler(Type messageType, IMessageHandler handler)
@@ -23,11 +24,13 @@ namespace NancyMessageHandler
             handlers.Add(handler);
         }
 
-        private readonly IDictionary<string, List<IMessageHandler>> _typeMessageHandlers;
+        private IDictionary<string, List<IMessageHandler>> _typeMessageHandlers;
 
-        public IEnumerable<IMessageHandler> GetHandlersForMessage(IMessage message)
+        public IEnumerable<IMessageHandler> GetHandlers(MessageModule module)
         {
-            return _typeMessageHandlers[message.MessageBody.GetType().AssemblyQualifiedName];
+            _typeMessageHandlers = new Dictionary<string, List<IMessageHandler>>();
+            module.PrepHandlers(this);
+            return _typeMessageHandlers[_message.MessageBody.GetType().AssemblyQualifiedName];
         }
 
         public bool MessageHandlersExist(IMessage message)
