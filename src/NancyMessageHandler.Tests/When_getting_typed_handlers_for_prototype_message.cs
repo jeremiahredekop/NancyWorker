@@ -19,15 +19,19 @@ namespace NancyMessageHandler.Tests
         }
 
         private Type _handler;
+        private SimpleMessage _message;
+        private MessageRegistrationHost _host;
 
         protected override void Given()
         {
             var registrations = new List<MessageModule> {new PrototypeModule()};
+            _host = MessageRegistrationHost.Init(registrations);
+            _message = new SimpleMessage(new PrototypeMessage());
+        }
 
-            MessageRegistrationHost host = MessageRegistrationHost.Init(registrations);
-
-            var message = new Support.SimpleMessage(new PrototypeMessage());
-            IEnumerable<Type> handlerTypes = host.GetGenericHandlersTypesForMessage(message);
+        protected override void When()
+        {
+            IEnumerable<Type> handlerTypes = _host.GetGenericHandlersTypesForMessage(_message);
             _handler = handlerTypes.SingleOrDefault();
         }
 
