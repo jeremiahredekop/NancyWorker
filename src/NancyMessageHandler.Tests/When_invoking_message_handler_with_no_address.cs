@@ -33,7 +33,6 @@ namespace NancyMessageHandler.Tests
 
         protected override void When()
         {
-            
             _handler.Handle(_message);
         }
 
@@ -52,7 +51,6 @@ namespace NancyMessageHandler.Tests
         [Then]
         public void invoking_the_handler_should_behave_as_expected()
         {
-            
             _module.Counter.Should().Be(1);
         }
     }
