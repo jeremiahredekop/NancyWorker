@@ -34,14 +34,14 @@ namespace NancyMessageHandler
 
         private HandlerExecutionMode _handlerExecutionMode;
 
-        protected IMessageHandlerExtension<T> ForMessageType<T>() where T : class
+        protected ITypedMessageHandlerExtension<T> ForMessageType<T>() where T : class
         {
             switch (_handlerExecutionMode)
             {
                     case HandlerExecutionMode.Registration:
-                        return new MessageHandlerRegistration<T>(_host, this);
+                        return new TypedMessageHandlerRegistration<T>(_host, this);
                     case HandlerExecutionMode.Execution:
-                        return new MessageHandlerExecution<T>(_messageHandlerFactory, this);
+                        return new TypedMessageHandlerExecution<T>(_typedMessageHandlerFactory, this);
                     default:
                         throw new NotImplementedException();
             }           
@@ -52,12 +52,12 @@ namespace NancyMessageHandler
             return new AddressBasedMessageHandler(_host,this);
         }
 
-        private MessageHandlerFactory _messageHandlerFactory;
+        private TypedMessageHandlerFactory _typedMessageHandlerFactory;
 
-        internal void PrepHandlers(MessageHandlerFactory messageHandlerFactory)
+        internal void PrepHandlers(TypedMessageHandlerFactory typedMessageHandlerFactory)
         {
             _handlerExecutionMode = HandlerExecutionMode.Execution;
-            _messageHandlerFactory = messageHandlerFactory;
+            _typedMessageHandlerFactory = typedMessageHandlerFactory;
             RegisterHandlers();
         }
     }

@@ -11,9 +11,9 @@
             _module = module;
         }
 
-        public IMessageHandlerExtension<T> ForMessageType<T>() where T : class
+        public ITypedMessageHandlerExtension<T> ForMessageType<T>() where T : class
         {
-            return new MessageHandlerRegistration<T>(_host,_module);
+            return new TypedMessageHandlerRegistration<T>(_host,_module);
         }
     }
 }

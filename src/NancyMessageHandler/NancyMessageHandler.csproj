@@ -47,17 +47,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressBasedMessageHandler.cs" />
+    <Compile Include="ITypedMessage.cs" />
     <Compile Include="MessageModule.cs" />
     <Compile Include="IMessage.cs" />
-    <Compile Include="IMessageHandler.cs" />
-    <Compile Include="IMessageHandlerExtension.cs" />
+    <Compile Include="ITypedMessageHandler.cs" />
+    <Compile Include="ITypedMessageHandlerExtension.cs" />
     <Compile Include="IMessageHandlerFactory.cs" />
     <Compile Include="IScopedMessage.cs" />
     <Compile Include="MessageAdapter.cs" />
-    <Compile Include="MessageHandler.cs" />
-    <Compile Include="MessageHandlerExecution.cs" />
-    <Compile Include="MessageHandlerFactory.cs" />
-    <Compile Include="MessageHandlerRegistration.cs" />
+    <Compile Include="TypedMessageHandler.cs" />
+    <Compile Include="TypedMessageHandlerExecution.cs" />
+    <Compile Include="TypedMessageHandlerFactory.cs" />
+    <Compile Include="TypedMessageHandlerRegistration.cs" />
     <Compile Include="MessageRegistrationHost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScopedMessageHandlerRegistration.cs" />

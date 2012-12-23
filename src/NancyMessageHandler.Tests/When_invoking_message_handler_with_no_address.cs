@@ -18,16 +18,16 @@ namespace NancyMessageHandler.Tests
             }
         }
 
-        private IMessageHandler _handler;
+        private ITypedMessageHandler _handler;
         private PrototypeModule _module;
         private IMessageHandlerFactory _factory;
-        private Support.SimpleMessage _message;
+        private ITypedMessage _message;
 
         protected override void Given()
         {
-            _message = new Support.SimpleMessage(new PrototypeMessage());
+            _message = JsonTypedMessage.FromMessage(new PrototypeMessage());
             _module = new PrototypeModule();
-            _factory = MessageHandlerFactory.ForMessage(_message);
+            _factory = TypedMessageHandlerFactory.ForMessage(_message);
             _handler = _factory.GetHandlers(_module).Single();
         }
 

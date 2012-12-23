@@ -8,7 +8,7 @@ using NancyMessageHandler.Tests.Support;
 namespace NancyMessageHandler.Tests
 {
     [TestFixture]
-    public class When_getting_handlers_with_no_address_for_prototype_message : SpecificationBase
+    public class When_getting_handlers_with_no_path_for_prototype_message : SpecificationBase
     {
         public class PrototypeModule : MessageModule
         {
@@ -19,14 +19,14 @@ namespace NancyMessageHandler.Tests
         }
 
         private Type _handler;
-        private SimpleMessage _message;
+        private ITypedMessage _message;
         private MessageRegistrationHost _host;
 
         protected override void Given()
         {
             var registrations = new List<MessageModule> {new PrototypeModule()};
             _host = MessageRegistrationHost.Init(registrations);
-            _message = new SimpleMessage(new PrototypeMessage());
+            _message = JsonTypedMessage.FromMessage(new PrototypeMessage());
         }
 
         protected override void When()

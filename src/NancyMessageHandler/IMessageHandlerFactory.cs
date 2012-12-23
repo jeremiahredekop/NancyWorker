@@ -4,6 +4,6 @@ namespace NancyMessageHandler
 {
     public interface IMessageHandlerFactory
     {
-        IEnumerable<IMessageHandler> GetHandlers(MessageModule message);
+        IEnumerable<ITypedMessageHandler> GetHandlers(MessageModule message);
     }
 }

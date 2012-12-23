@@ -15,7 +15,7 @@ namespace NancyMessageHandler
             _path = path;
         }
 
-        public void Handle(Action<IMessage<T>> handler)
+        public void Handle(Action<ITypedMessage<T>> handler)
         {
             _host.PathHandlers.Add(_path,_module.GetType());
         }

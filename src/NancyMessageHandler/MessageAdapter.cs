@@ -2,22 +2,17 @@
 
 namespace NancyMessageHandler
 {
-    internal class MessageAdapter<T> : IMessage<T> where T : class
+    internal class MessageAdapter<T> : ITypedMessage<T> where T : class
     {
-        private readonly IMessage _inner;
+        private readonly ITypedMessage _inner;
 
-        public MessageAdapter(IMessage inner)
+        public MessageAdapter(ITypedMessage inner)
         {
             _inner = inner;
         }
 
         public IDictionary<string, object> Headers { get { return _inner.Headers; } }
-        public T MessageBody { get { return _inner.MessageBody as T; } }
-
-        object IMessage.MessageBody
-        {
-            get { return MessageBody; }
-        }
+        public T MessageBody { get { return _inner.GetMessageBody() as T; } }
 
         public string AssemblyQualifiedTypeName { get { return typeof(T).AssemblyQualifiedName; } }
     }

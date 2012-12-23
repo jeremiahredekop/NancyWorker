@@ -2,9 +2,9 @@
 
 namespace NancyMessageHandler
 {
-    public interface IMessageHandler
+    public interface ITypedMessageHandler
     {
-        void Handle(IMessage message);
+        void Handle(ITypedMessage message);
         Type HandlerType { get; }
     }
 }

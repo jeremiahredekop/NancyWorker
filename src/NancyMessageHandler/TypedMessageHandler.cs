@@ -2,17 +2,17 @@
 
 namespace NancyMessageHandler
 {
-    internal class MessageHandler<T> : IMessageHandler where T : class
+    internal class TypedMessageHandler<T> : ITypedMessageHandler where T : class
     {
-        private readonly Action<IMessage<T>> _innerHandler;
+        private readonly Action<ITypedMessage<T>> _innerHandler;
 
-        public MessageHandler(Action<IMessage<T>> innerHandler, Type handlerType)
+        public TypedMessageHandler(Action<ITypedMessage<T>> innerHandler, Type handlerType)
         {
             _innerHandler = innerHandler;
             HandlerType = handlerType;
         }
 
-        public void Handle(IMessage message)
+        public void Handle(ITypedMessage message)
         {
             _innerHandler.Invoke(new MessageAdapter<T>(message));
         }
