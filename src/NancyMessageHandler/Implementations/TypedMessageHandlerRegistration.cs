@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using gcExtensions;
 
-namespace NancyMessageHandler
+namespace NancyMessageHandler.Implementations
 {
     internal class TypedMessageHandlerRegistration<T> : ITypedMessageHandlerExtension<T> where T: class
     {
-        private readonly MessageRegistrationHost _host;
+        private readonly HandlerTypeResolver _host;
         private readonly MessageModule _module;
 
-        public TypedMessageHandlerRegistration(MessageRegistrationHost host, MessageModule module)
+        public TypedMessageHandlerRegistration(IHandlerTypeResolver host, MessageModule module)
         {
-            _host = host;
+            _host = (HandlerTypeResolver) host;
             _module = module;
         }
 

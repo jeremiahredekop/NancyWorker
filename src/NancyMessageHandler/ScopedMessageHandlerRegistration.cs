@@ -1,14 +1,14 @@
 ﻿using System;
 
-namespace NancyMessageHandler
+namespace NancyMessageHandler.Implementations
 {
     public class ScopedMessageHandlerRegistration<T>
     {
-        private readonly MessageRegistrationHost _host;
+        private readonly HandlerTypeResolver _host;
         private readonly MessageModule _module;
         private readonly string _path;
 
-        public ScopedMessageHandlerRegistration(MessageRegistrationHost host, MessageModule module, string path)
+        public ScopedMessageHandlerRegistration(HandlerTypeResolver host, MessageModule module, string path)
         {
             _host = host;
             _module = module;

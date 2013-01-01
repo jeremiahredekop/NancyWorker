@@ -1,11 +1,13 @@
-﻿namespace NancyMessageHandler
+﻿namespace NancyMessageHandler.Implementations
 {
+
+    //TODO: This class is way wrong
     public class AddressBasedMessageHandler
     {
-        private readonly MessageRegistrationHost _host;
+        private readonly IHandlerTypeResolver _host;
         private readonly MessageModule _module;
 
-        public AddressBasedMessageHandler(MessageRegistrationHost host, MessageModule module)
+        public AddressBasedMessageHandler(IHandlerTypeResolver host, MessageModule module)
         {
             _host = host;
             _module = module;

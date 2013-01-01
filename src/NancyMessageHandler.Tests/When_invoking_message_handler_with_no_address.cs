@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
+using NancyMessageHandler.Implementations;
 using NancyMessageHandler.Tests.Support;
 
 namespace NancyMessageHandler.Tests

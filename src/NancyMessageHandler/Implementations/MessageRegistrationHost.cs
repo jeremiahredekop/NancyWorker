@@ -1,22 +1,26 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using gcExtensions;
 
-namespace NancyMessageHandler
+namespace NancyMessageHandler.Implementations
 {
-    public class MessageRegistrationHost
+    public class HandlerTypeResolver : IHandlerTypeResolver
     {
-        private readonly IEnumerable<MessageModule> _handlers;
-
-        private MessageRegistrationHost(IEnumerable<MessageModule> handlers )
+        private HandlerTypeResolver(IEnumerable<MessageModule> handlers)
         {
-            _handlers = handlers;
             PathHandlers = new Dictionary<string, Type>();
             _typeMessageHandlers = new Dictionary<string, List<Type>>();
 
-            _handlers.ToList().ForEach(h=> h.ForRegistrations(this));
+            if (handlers != null)
+                handlers.ToList().ForEach(RegisterModule);
         }
+
+        public void RegisterModule(MessageModule type)
+        {
+            type.ForRegistrations(this);
+        }
+
 
         internal IDictionary<string, Type> PathHandlers { get; private set; }
         private readonly IDictionary<string, List<Type>> _typeMessageHandlers;
@@ -27,16 +31,18 @@ namespace NancyMessageHandler
             handlers.Add(moduleType);
         }
 
-        public static MessageRegistrationHost Init(IEnumerable<MessageModule> handlers)
+        public static HandlerTypeResolver Init(IEnumerable<MessageModule> handlers = null)
         {
-            return new MessageRegistrationHost(handlers);
+            return new HandlerTypeResolver(handlers);
         }
 
-        public IEnumerable<Type> GetGenericHandlersTypesForMessage(ITypedMessage message)
+        public IEnumerable<Type> GetHandlersTypesForMessage(ITypedMessage message)
         {
             List<Type> handlerTypes;
             _typeMessageHandlers.TryGetValue(message.AssemblyQualifiedTypeName, out handlerTypes);
             return handlerTypes;
         }
+
+
     }
 }

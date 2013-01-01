@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace NancyMessageHandler
+namespace NancyMessageHandler.Implementations
 {
     public abstract class MessageModule
     {
         private readonly string _rootuUl;
-        private MessageRegistrationHost _host;
+        private IHandlerTypeResolver _host;
 
         protected MessageModule()
         {   
@@ -16,7 +16,7 @@ namespace NancyMessageHandler
             _rootuUl = rootuUl;
         }
 
-        internal void ForRegistrations(MessageRegistrationHost host)
+        internal void ForRegistrations(IHandlerTypeResolver host)
         {
             _handlerExecutionMode = HandlerExecutionMode.Registration;
             _host = host;
@@ -39,7 +39,7 @@ namespace NancyMessageHandler
             switch (_handlerExecutionMode)
             {
                     case HandlerExecutionMode.Registration:
-                        return new TypedMessageHandlerRegistration<T>(_host, this);
+                        return new TypedMessageHandlerRegistration<T>((HandlerTypeResolver) _host, this);
                     case HandlerExecutionMode.Execution:
                         return new TypedMessageHandlerExecution<T>(_typedMessageHandlerFactory, this);
                     default:
@@ -49,7 +49,7 @@ namespace NancyMessageHandler
 
         protected AddressBasedMessageHandler AtAddress(string yo)
         {
-            return new AddressBasedMessageHandler(_host,this);
+            return new AddressBasedMessageHandler((HandlerTypeResolver) _host,this);
         }
 
         private TypedMessageHandlerFactory _typedMessageHandlerFactory;

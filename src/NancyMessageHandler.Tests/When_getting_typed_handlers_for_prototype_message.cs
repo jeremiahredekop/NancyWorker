@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
+using NancyMessageHandler.Implementations;
 using NancyMessageHandler.Tests.Support;
 
 namespace NancyMessageHandler.Tests
@@ -20,18 +21,18 @@ namespace NancyMessageHandler.Tests
 
         private Type _handler;
         private ITypedMessage _message;
-        private MessageRegistrationHost _host;
+        private HandlerTypeResolver _host;
 
         protected override void Given()
         {
             var registrations = new List<MessageModule> {new PrototypeModule()};
-            _host = MessageRegistrationHost.Init(registrations);
+            _host = HandlerTypeResolver.Init(registrations);
             _message = JsonTypedMessage.FromMessage(new PrototypeMessage());
         }
 
         protected override void When()
         {
-            IEnumerable<Type> handlerTypes = _host.GetGenericHandlersTypesForMessage(_message);
+            IEnumerable<Type> handlerTypes = _host.GetHandlersTypesForMessage(_message);
             _handler = handlerTypes.SingleOrDefault();
         }
 

@@ -47,6 +47,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressBasedMessageHandler.cs" />
+    <Compile Include="Implementations\ReflectionModuleFactory.cs" />
+    <Compile Include="Fluent\FluentHandlers.cs" />
+    <Compile Include="Fluent\FluntExtensions.cs" />
+    <Compile Include="Fluent\IFluentInit.cs" />
+    <Compile Include="IMessageHandlerFacade.cs" />
+    <Compile Include="IModuleFactory.cs" />
+    <Compile Include="Fluent\ITypedFluentInit.cs" />
+    <Compile Include="IHandlerTypeResolver.cs" />
+    <Compile Include="Implementations\MessageRegistrationHost.cs" />
+    <Compile Include="Implementations\TypedMessageHandlerFacade.cs" />
     <Compile Include="ITypedMessage.cs" />
     <Compile Include="MessageModule.cs" />
     <Compile Include="IMessage.cs" />
@@ -54,12 +64,11 @@
     <Compile Include="ITypedMessageHandlerExtension.cs" />
     <Compile Include="IMessageHandlerFactory.cs" />
     <Compile Include="IScopedMessage.cs" />
-    <Compile Include="MessageAdapter.cs" />
-    <Compile Include="TypedMessageHandler.cs" />
-    <Compile Include="TypedMessageHandlerExecution.cs" />
-    <Compile Include="TypedMessageHandlerFactory.cs" />
-    <Compile Include="TypedMessageHandlerRegistration.cs" />
-    <Compile Include="MessageRegistrationHost.cs" />
+    <Compile Include="Implementations\MessageAdapter.cs" />
+    <Compile Include="Implementations\TypedMessageHandler.cs" />
+    <Compile Include="Implementations\TypedMessageHandlerExecution.cs" />
+    <Compile Include="Implementations\TypedMessageHandlerFactory.cs" />
+    <Compile Include="Implementations\TypedMessageHandlerRegistration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScopedMessageHandlerRegistration.cs" />
   </ItemGroup>

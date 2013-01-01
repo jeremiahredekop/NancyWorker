@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NancyMessageHandler
+namespace NancyMessageHandler.Implementations
 {
     internal class TypedMessageHandler<T> : ITypedMessageHandler where T : class
     {

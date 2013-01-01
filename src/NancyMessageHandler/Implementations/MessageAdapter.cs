@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NancyMessageHandler
+namespace NancyMessageHandler.Implementations
 {
     internal class MessageAdapter<T> : ITypedMessage<T> where T : class
     {

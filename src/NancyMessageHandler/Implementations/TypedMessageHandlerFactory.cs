@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using gcExtensions;
-namespace NancyMessageHandler
+
+namespace NancyMessageHandler.Implementations
 {
     public class TypedMessageHandlerFactory : IMessageHandlerFactory
     {
