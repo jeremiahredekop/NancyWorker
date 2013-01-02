@@ -30,7 +30,6 @@ Open source - BSD.
 
 Here's an example of what I'm aiming for.
 
-'''c#
 [TestFixture]
 public class When_invoking_handler_created_from_fluent_api :SpecificationBase
 {
@@ -69,4 +68,3 @@ public class When_invoking_handler_created_from_fluent_api :SpecificationBase
         Handled.Should().BeTrue();
     }
 }
-'''
