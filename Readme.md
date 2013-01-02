@@ -31,42 +31,42 @@ Open source - BSD.
 Here's an example of what I'm aiming for.
 
 '''c#
-   [TestFixture]
-    public class When_invoking_handler_created_from_fluent_api :SpecificationBase
-    {
-        public static bool Handled;
+[TestFixture]
+public class When_invoking_handler_created_from_fluent_api :SpecificationBase
+{
+    public static bool Handled;
        
-        private IMessage _message;
-        private IMessageHandlerFacade _facade;
+    private IMessage _message;
+    private IMessageHandlerFacade _facade;
 
-        private class MyModule : MessageModule
+    private class MyModule : MessageModule
+    {
+        protected override void RegisterHandlers()
         {
-            protected override void RegisterHandlers()
-            {
-                ForMessageType<PrototypeMessage>().Handle(m => Handled = true);
-            }
-        }
-
-        protected override void Given()
-        {
-            _message = JsonTypedMessage.FromMessage(new PrototypeMessage());
-
-            _facade = FluentHandlers.Init()
-                                    .UsingTypeResolver()
-                                    .WithAssemblyModuleTypes(GetType().Assembly, t => t == typeof (MyModule))
-                                    .UsingReflectionModuleFactory()
-                                    .Build();
-        }
-
-        protected override void When()
-        {
-            _facade.HandleMessage(_message);
-        }
-
-        [Then]
-        public void The_message_should_have_been_handled()
-        {
-            Handled.Should().BeTrue();
+            ForMessageType<PrototypeMessage>().Handle(m => Handled = true);
         }
     }
+
+    protected override void Given()
+    {
+        _message = JsonTypedMessage.FromMessage(new PrototypeMessage());
+
+        _facade = FluentHandlers.Init()
+                                .UsingTypeResolver()
+                                .WithAssemblyModuleTypes(GetType().Assembly, t => t == typeof (MyModule))
+                                .UsingReflectionModuleFactory()
+                                .Build();
+    }
+
+    protected override void When()
+    {
+        _facade.HandleMessage(_message);
+    }
+
+    [Then]
+    public void The_message_should_have_been_handled()
+    {
+        Handled.Should().BeTrue();
+    }
+}
 '''
