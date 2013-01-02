@@ -29,9 +29,9 @@ Open source - BSD.
 **The Code:**
 
 Here's an example of what I'm aiming for.
-
-[TestFixture]
-public class When_invoking_handler_created_from_fluent_api :SpecificationBase
+<pre><code>
+[TestFixture]  
+public class When_invoking_handler_created_from_fluent_api : SpecificationBase
 {
     public static bool Handled;
        
@@ -68,3 +68,4 @@ public class When_invoking_handler_created_from_fluent_api :SpecificationBase
         Handled.Should().BeTrue();
     }
 }
+</code></pre>
